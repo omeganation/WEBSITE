@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Today</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #00b359;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .search-bar input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .search-bar button {
+      padding: 5px 10px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .main-content {
+      max-width: 900px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-content h2 {
+      margin-bottom: 20px;
+    }
+
+    .news-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .news-item {
+      flex: 1;
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+      max-width: 45%;
+    }
+
+    .news-item img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+
+    .news-item h3 {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .news-item p {
+      font-size: 14px;
+    }
+
+    .news-item a {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>News Today</h1>
+  <div class="nav-links">
+    <a href="world.html">World</a>
+    <a href="Tech.html">Tech</a>
+    <a href="Sports.html">Sports</a>
+    <a href="Entertainment.html">Entertainment</a>
+  </div>
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search for news...">
+    <button onclick="searchNews()">Search</button>
+  </div>
+</header>
+
+<div class="main-content">
+  <h2>Trending News</h2>
+  <div class="news-container" id="news-container">
+    <!-- News Item 1 -->
+    <div class="news-item">
+      <h3>Breaking News Title:</h3>
+      <p><b>This Little Boy His Post From Instagram Is Trending.</b></p>
+      <a href="#">Read more</a>
+      <img src="https://via.placeholder.com/300" alt="News Image">
+    </div>
+
+    <!-- News Item 2 -->
+    <div class="news-item">
+      <h3>Another News Headline</h3>
+      <p>A summary of this article...</p>
+      <a href="#">Read more</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Function to simulate a search
+  function searchNews() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const newsItems = document.querySelectorAll('.news-item');
+
+    newsItems.forEach(item => {
+      const title = item.querySelector('h3').textContent.toLowerCase();
+      const content = item.querySelector('p').textContent.toLowerCase();
+      if (title.includes(searchInput) || content.includes(searchInput)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Add dynamic news articles
+  function addNews(title, summary, imageUrl) {
+    const newsContainer = document.getElementById('news-container');
+    const newsItem = document.createElement('div');
+    newsItem.className = 'news-item';
+
+    newsItem.innerHTML = `
+      <h3>${title}</h3>
+      <p>${summary}</p>
+      <a href="#">Read more</a>
+      <img src="${imageUrl}" alt="News Image">
+    `;
+
+    newsContainer.appendChild(newsItem);
+  }
+
+  // Add sample dynamic news articles
+  addNews('Exciting Tech Launch', 'The latest gadget is here...', 'https://via.placeholder.com/300');
+  addNews('Sports Update', 'Your favorite team won the match!', 'https://via.placeholder.com/300');
+</script>
+
+</body>
+</html>
